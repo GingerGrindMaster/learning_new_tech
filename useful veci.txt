@@ -1,0 +1,32 @@
+docker-compose up --build    #postavi docker image pomoci dockerfilu a yml
+docker ps  #ukaze vsechny bezi docker kontejnery
+docker images  #ukaze vsechny docker images
+
+
+# Přihlášení k DockerHub
+docker login
+
+# Tagování image - nepovine, v yml po buildu muzu nastavit jmeno kazdeho new buildu
+docker tag my-weather-app honzapika/my-weather-app:latest
+
+# Odeslání image na DockerHub
+docker push honzapika/restapi:weatherapp_latest
+
+# Stáhnutí image z DockerHub
+docker pull honzapika/restapi:weatherapp_latest
+
+# Spuštění kontejneru z image na portu, pro fastapi, podle toho co je v CMD v Dockerfile
+uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+
+#nebo nekdy lze i toto
+docker run -p 8000:8000 honzapika/restapi:weatherapp
+
+
+#dotaz posilany na localhost kde bezi apka
+curl -X {POST or GET or whatever} http://localhost:portnumber/endpoint
+
+curl -X GET http://localhost:8000/wantedendpoint -H "Authorization: Bearer <tvůj_token>"
+
+
+#pusteni keycloaku na localu
+docker run -p 8080:8080 -v keycloak_data:/opt/keycloak/data quay.io/keycloak/keycloak:26.0.5 start-dev

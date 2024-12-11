@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build: .
+    image: honzapika/restapi:done
+    ports:
+      - "5000:5000"
+
+
+#Když někdo spustí příkaz jako treba docker pull honzapika/restapi:latest,
+#Docker se podívá na DockerHub pod tvé uživatelské jméno a stáhne image s názvem restapi a tagem latest.
+#Pokud image ještě nebyla stažena, Docker ji stáhne z DockerHubu

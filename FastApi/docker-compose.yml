@@ -1,0 +1,7 @@
+version: '3'
+services:
+  web:
+    build: .    # . means the current directory
+    image: honzapika/restapi:weatherapp_latest
+    ports:
+      - "8000:8000"
